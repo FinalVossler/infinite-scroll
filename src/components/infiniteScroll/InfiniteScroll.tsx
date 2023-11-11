@@ -8,24 +8,28 @@ import IDataWithId from "./types/IDataWithId";
 import ITheme from "../../types/ITheme";
 
 const DEFAULT_HEIGHT = 800;
+const DEFAULT_PAGE_SIZE = 10;
 
 export interface IInfiniteScrollProps<T extends IDataWithId> {
   data: T[];
-  getData: () => Promise<T[]>;
+  getData: (page: IPage) => Promise<{ items: T[]; total: number }>;
   render: React.FunctionComponent<IRenderItemProps<T>>;
   height?: number;
   loading?: boolean;
   theme: ITheme;
+  pageSize?: number;
 }
 
 function InfiniteScroll<T extends IDataWithId>(props: IInfiniteScrollProps<T>) {
   //#region Hooks
+  const startIndexRef = React.useRef<number>(0);
+  const totalRef = React.useRef<number | undefined>(undefined);
   const containerRef = React.useRef<HTMLDivElement>(null);
   const styles = useStyles({ theme: props.theme });
   //#endregion Hooks
 
   //#region Listeners
-  const handleCheckScroll = () => {
+  const handleCheckScroll = async () => {
     const scrollContainer = containerRef.current;
 
     if (scrollContainer) {
@@ -35,8 +39,18 @@ function InfiniteScroll<T extends IDataWithId>(props: IInfiniteScrollProps<T>) {
         scrollContainer.clientHeight;
 
       if (isAtBottom) {
-        if (!props.loading) {
-          props.getData();
+        if (
+          !props.loading &&
+          (!totalRef.current || props.data.length < totalRef.current)
+        ) {
+          startIndexRef.current++;
+          const { total } = await props.getData({
+            startIndex: startIndexRef.current,
+            stopIndex:
+              startIndexRef.current + (props.pageSize || DEFAULT_PAGE_SIZE) - 1,
+          });
+
+          totalRef.current = total;
         }
       }
     }

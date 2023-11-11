@@ -12,6 +12,8 @@ import { theme } from "../../../types/ITheme";
 import { generatePersons } from "../../../utils/generatePersons";
 import useQuery from "../../../hooks/useQuery";
 
+const PAGE_SIZE = 10;
+
 const TestComponent = () => {
   //#region Local state
   const [persons, setPersons] = React.useState<IPerson[]>([]);
@@ -23,17 +25,21 @@ const TestComponent = () => {
 
   //#region Effects
   React.useEffect(() => {
-    handleGetPersons();
+    handleGetPersons({ startIndex: 0, stopIndex: PAGE_SIZE - 1 });
   }, []);
   //#endregion Effects
 
   //#region Listeners
-  const handleGetPersons = async (): Promise<IPerson[]> => {
-    const newPersons: IPerson[] = await query(generatePersons({ howMany: 10 }));
-    setPersons([...persons, ...newPersons]);
+  const handleGetPersons = async (
+    page: IPage
+  ): Promise<{ items: IPerson[]; total: number }> => {
+    const { persons: newPersons, total: totalPersons } = await query(
+      generatePersons({ howMany: 10 })
+    );
+    setPersons([...persons, ...newPersons].slice(0, totalPersons));
 
     // Not necessary. Just for contract respecting purposes.
-    return newPersons;
+    return { items: newPersons, total: totalPersons };
   };
   //#endregion Listeners
 
@@ -49,6 +55,7 @@ const TestComponent = () => {
           getData={handleGetPersons}
           loading={personsLoading}
           theme={theme}
+          pageSize={10}
         />
       </div>
     </ThemeProvider>

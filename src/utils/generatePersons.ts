@@ -31,14 +31,14 @@ const ALPHABET = [
 
 const MAX_NAME_LENGTH = 7;
 const MAX_AGE = 90;
+const TOTAL_PERSONS = 71;
 
 interface IGenerateDataParams {
   howMany: number;
 }
 
 export const generatePersons = (params: IGenerateDataParams) => () =>
-  new Promise<IPerson[]>((resolve, reject) => {
-    console.log("triggered");
+  new Promise<{ persons: IPerson[]; total: number }>((resolve, reject) => {
     setTimeout(() => {
       const generateRandomLetter = (): string =>
         ALPHABET[Math.ceil(Math.random() * ALPHABET.length - 1)];
@@ -65,6 +65,9 @@ export const generatePersons = (params: IGenerateDataParams) => () =>
         persons.push(person);
       });
 
-      resolve(persons);
+      resolve({
+        persons,
+        total: TOTAL_PERSONS,
+      });
     }, 2000);
   });
