@@ -1,6 +1,6 @@
 # Demo:
 
-<a target="_blank" href="https://bob-infinite-scroll.netlify.app/">https://bob-infinite-scroll.netlify.app/</a>
+https://bob-infinite-scroll.netlify.app/
 
 # Installation:
 
