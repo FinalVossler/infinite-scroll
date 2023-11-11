@@ -1,6 +1,6 @@
 import React from "react";
 
-import TestComponent from "./TestComponent";
+import TestComponent, { PAGE_SIZE } from "./TestComponent";
 
 describe("<InfiniteScroll />", () => {
   beforeEach(() => {
@@ -28,14 +28,14 @@ describe("<InfiniteScroll />", () => {
 
     cy.wait(2000);
     cy.get('[data-cy="infiniteScrollContainer"]').should("be.visible");
-    cy.get('[data-cy="person"]').should("have.length", 10);
+    cy.get('[data-cy="person"]').should("have.length", PAGE_SIZE);
     cy.get('[data-cy="infiniteScrollContainer"]').scrollTo(0, 500);
     cy.get('[data-cy="infiniteScrollLoading"]').should("be.visible");
     cy.get('[data-cy="infiniteScrollLoading"]').should("not.exist", {
       timeout: 10000,
     });
-    cy.get('[data-cy="person"]').should("have.length", 20);
+    cy.get('[data-cy="person"]').should("have.length", PAGE_SIZE * 2);
     cy.get('[data-cy="infiniteScrollContainer"]').scrollTo(0, 1000);
-    cy.get('[data-cy="person"]').should("have.length", 30);
+    cy.get('[data-cy="person"]').should("have.length", PAGE_SIZE * 3);
   });
 });

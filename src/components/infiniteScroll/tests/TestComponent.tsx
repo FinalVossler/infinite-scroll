@@ -12,7 +12,7 @@ import { theme } from "../../../types/ITheme";
 import { generatePersons } from "../../../utils/generatePersons";
 import useQuery from "../../../hooks/useQuery";
 
-const PAGE_SIZE = 10;
+export const PAGE_SIZE = 10;
 
 const TestComponent = () => {
   //#region Local state
