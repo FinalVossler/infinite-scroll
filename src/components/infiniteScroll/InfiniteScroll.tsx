@@ -43,7 +43,7 @@ function InfiniteScroll<T extends IDataWithId>(props: IInfiniteScrollProps<T>) {
           !props.loading &&
           (!totalRef.current || props.data.length < totalRef.current)
         ) {
-          startIndexRef.current++;
+          startIndexRef.current += props.pageSize || DEFAULT_PAGE_SIZE;
           const { total } = await props.getData({
             startIndex: startIndexRef.current,
             stopIndex:
