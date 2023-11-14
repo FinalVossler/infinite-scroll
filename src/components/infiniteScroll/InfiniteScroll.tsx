@@ -104,6 +104,7 @@ function InfiniteScroll<T extends IDataWithId>(props: IInfiniteScrollProps<T>) {
         >
           <div
             style={{
+              // Keep moving our list down as we keep scrolling
               willChange: "transform",
               transform: `translateY(${offsetY}px)`,
             }}
