@@ -18,4 +18,4 @@ const Person: React.FunctionComponent<IRenderItemProps<IPerson>> = (
   );
 };
 
-export default Person;
+export default React.memo(Person);

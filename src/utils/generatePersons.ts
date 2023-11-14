@@ -31,7 +31,7 @@ const ALPHABET = [
 
 const MAX_NAME_LENGTH = 7;
 const MAX_AGE = 90;
-const TOTAL_PERSONS = 71;
+const TOTAL_PERSONS = 100;
 
 interface IGenerateDataParams {
   howMany: number;

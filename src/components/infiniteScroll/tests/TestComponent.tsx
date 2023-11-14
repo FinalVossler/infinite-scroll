@@ -12,7 +12,7 @@ import { theme } from "../../../types/ITheme";
 import { generatePersons } from "../../../utils/generatePersons";
 import useQuery from "../../../hooks/useQuery";
 
-export const PAGE_SIZE = 10;
+export const PAGE_SIZE = 20;
 
 const TestComponent = () => {
   //#region Local state
@@ -34,7 +34,7 @@ const TestComponent = () => {
     page: IPage
   ): Promise<{ items: IPerson[]; total: number }> => {
     const { persons: newPersons, total: totalPersons } = await query(
-      generatePersons({ howMany: 10 })
+      generatePersons({ howMany: PAGE_SIZE })
     );
     setPersons([...persons, ...newPersons].slice(0, totalPersons));
 
@@ -55,7 +55,7 @@ const TestComponent = () => {
           getData={handleGetPersons}
           loading={personsLoading}
           theme={theme}
-          pageSize={10}
+          pageSize={PAGE_SIZE}
         />
       </div>
     </ThemeProvider>

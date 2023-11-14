@@ -3,16 +3,16 @@ import ITheme from "../../types/ITheme";
 
 const useStyles = createUseStyles((theme: ITheme) => ({
   infiniteScrollContainer: {
-    display: "flex",
-    flexDirection: "column",
     overflow: "auto",
     border: "1px solid black",
-    padding: 10,
     boxSizing: "border-box",
     borderRadius: 5,
     backgroundColor: theme.contentBackgroundColor,
   },
   itemContainer: {},
+  totalContentContainer: {
+    overflow: "hidden",
+  },
   loadingContainer: {
     display: "flex",
     margin: "auto",
