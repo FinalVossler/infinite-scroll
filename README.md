@@ -8,3 +8,10 @@ https://bob-infinite-scroll.netlify.app/
 - `npm install`
 - `npm start`
 - Open localhost on port 3000
+
+# Difficulties:
+
+- Item height (First item height)
+- Will change
+- Total height: height: ITEM_HEIGHT \* (props.data.length + 1)
+- Offset

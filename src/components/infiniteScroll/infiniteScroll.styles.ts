@@ -10,9 +10,7 @@ const useStyles = createUseStyles((theme: ITheme) => ({
     backgroundColor: theme.contentBackgroundColor,
   },
   itemContainer: {},
-  totalContentContainer: {
-    overflow: "hidden",
-  },
+  totalContentContainer: {},
   loadingContainer: {
     display: "flex",
     margin: "auto",
