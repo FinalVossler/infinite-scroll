@@ -47,7 +47,7 @@ const TestComponent = () => {
   return (
     <ThemeProvider theme={theme}>
       <div className="container">
-        <h1 className="title">Infinite scroll consumer</h1>
+        <h1 className="title">Virtual scroll consumer</h1>
         <InfiniteScroll
           data={persons}
           height={650}
