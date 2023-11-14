@@ -69,7 +69,6 @@ function InfiniteScroll<T extends IDataWithId>(props: IInfiniteScrollProps<T>) {
 
   //#region Effects
   React.useEffect(() => {
-    console.log("firstItemRef", firstItemRef.current);
     if (firstItemRef.current) {
       setItemHeight(firstItemRef.current.clientHeight);
     }
