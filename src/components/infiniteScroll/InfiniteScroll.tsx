@@ -84,8 +84,10 @@ function InfiniteScroll<T extends IDataWithId>(props: IInfiniteScrollProps<T>) {
   const offsetY = startItemIndex * itemHeight;
 
   let stopItemIndex =
-    startItemIndex + Math.floor((props.height || DEFAULT_HEIGHT) / itemHeight);
-  stopItemIndex = Math.min(props.data.length - 1, stopItemIndex) + ITEM_MARGIN;
+    startItemIndex +
+    Math.floor((props.height || DEFAULT_HEIGHT) / itemHeight) +
+    ITEM_MARGIN;
+  stopItemIndex = Math.min(props.data.length - 1, stopItemIndex);
   return (
     <React.Fragment>
       <div
