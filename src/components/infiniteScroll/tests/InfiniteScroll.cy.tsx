@@ -23,7 +23,7 @@ describe("<InfiniteScroll />", () => {
     cy.get('[data-cy="infiniteScrollLoading"]').should("be.visible");
   });
 
-  it("Should finish loading and have more visible items in the screens", () => {
+  it("Should finish loading and always have the same number of shown items in the screen after multiple loadings", () => {
     cy.mount(<TestComponent />);
 
     cy.wait(2000);
