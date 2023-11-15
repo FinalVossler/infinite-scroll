@@ -51,6 +51,7 @@ const TestComponent = () => {
         <InfiniteScroll
           data={persons}
           height={650}
+          //@ts-ignore
           render={Person as FunctionComponent<IRenderItemProps<IDataWithId>>}
           getData={handleGetPersons}
           loading={personsLoading}
